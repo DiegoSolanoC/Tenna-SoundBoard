@@ -297,6 +297,15 @@ function initMusicPanel() {
             currentSong = songPath;
             updateNowPlaying();
             
+            // Add error handler for file loading issues (case sensitivity on GitHub Pages)
+            const handleLoadError = () => {
+                console.error(`❌ Failed to load music file: ${encodedPath}`);
+                console.error(`   Attempted path: ${songPath}`);
+                console.error(`   This is likely a case sensitivity issue on GitHub Pages.`);
+                console.error(`   Please verify the file name on GitHub matches exactly: ${songPath.split('/').pop()}`);
+            };
+            backgroundMusic.addEventListener('error', handleLoadError, { once: true });
+            
             // Update selected button
             document.querySelectorAll('.music-grid-btn').forEach(btn => {
                 btn.classList.remove('selected');
