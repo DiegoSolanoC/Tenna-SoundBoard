@@ -1,0 +1,152 @@
+{
+  "music": [
+    {
+      "filename": "Catswing.mp3",
+      "name": "Catswing"
+    },
+    {
+      "filename": "Its TV Time.mp3",
+      "name": "Its TV Time"
+    },
+    {
+      "filename": "Pushing Buddies.mp3",
+      "name": "Pushing Buddies"
+    },
+    {
+      "filename": "The Board Please.mp3",
+      "name": "The Board Please"
+    },
+    {
+      "filename": "Tv World.mp3",
+      "name": "Tv World"
+    }
+  ],
+  "soundEffects": [
+    {
+      "filename": "Attack or Roleplay/Battle Start.mp3",
+      "name": "Battle Start",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/Battle Start.png"
+    },
+    {
+      "filename": "Attack or Roleplay/Explosion.mp3",
+      "name": "Explosion",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/Explosion.png"
+    },
+    {
+      "filename": "Attack or Roleplay/Game Over.mp3",
+      "name": "Game Over",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/Game Over.png"
+    },
+    {
+      "filename": "Attack or Roleplay/Tenna Talk.mp3",
+      "name": "Tenna Talk",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/Tenna Talk.png"
+    },
+    {
+      "filename": "Attack or Roleplay/TV Off.mp3",
+      "name": "TV Off",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/TV Off.png"
+    },
+    {
+      "filename": "Attack or Roleplay/Weapon Pull.mp3",
+      "name": "Weapon Pull",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/Weapon Pull.png"
+    },
+    {
+      "filename": "Attack or Roleplay/Yellow Effect.mp3",
+      "name": "Yellow Effect",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/Yellow Effect.png"
+    },
+    {
+      "filename": "During Photos/Fanfare.mp3",
+      "name": "Fanfare",
+      "category": "During Photos",
+      "icon": "Sound Effect Icons/Fanfare.png"
+    },
+    {
+      "filename": "During Photos/Friend Inside Me.mp3",
+      "name": "Friend Inside Me",
+      "category": "During Photos",
+      "icon": "Sound Effect Icons/Friend Inside Me.png"
+    },
+    {
+      "filename": "During Photos/Fun Meter.mp3",
+      "name": "Fun Meter",
+      "category": "During Photos",
+      "icon": "Sound Effect Icons/Fun Meter.png"
+    },
+    {
+      "filename": "During Photos/Its TV Time.mp3",
+      "name": "Its TV Time",
+      "category": "During Photos",
+      "icon": "Sound Effect Icons/Its TV Time.png"
+    },
+    {
+      "filename": "During Photos/Weird Route.mp3",
+      "name": "Weird Route",
+      "category": "During Photos",
+      "icon": "Sound Effect Icons/Weird Route.png"
+    },
+    {
+      "filename": "During Photos/YOU ARE TAKING TOO LONG.mp3",
+      "name": "YOU ARE TAKING TOO LONG",
+      "category": "During Photos",
+      "icon": "Sound Effect Icons/YOU ARE TAKING TOO LONG.png"
+    },
+    {
+      "filename": "During Photos/You Found Moss.mp3",
+      "name": "You Found Moss",
+      "category": "During Photos",
+      "icon": "Sound Effect Icons/You Found Moss.png"
+    },
+    {
+      "filename": "Weird Interactions/Can Laughter.mp3",
+      "name": "Can Laughter",
+      "category": "Weird Interactions",
+      "icon": "Sound Effect Icons/Can Laughter.png"
+    },
+    {
+      "filename": "Weird Interactions/Crowd Cheer.mp3",
+      "name": "Crowd Cheer",
+      "category": "Weird Interactions",
+      "icon": "Sound Effect Icons/Crowd Cheer.png"
+    },
+    {
+      "filename": "Weird Interactions/Falling.mp3",
+      "name": "Falling",
+      "category": "Weird Interactions",
+      "icon": "Sound Effect Icons/Fall.png"
+    },
+    {
+      "filename": "Weird Interactions/Gaster.mp3",
+      "name": "Gaster",
+      "category": "Weird Interactions",
+      "icon": "Sound Effect Icons/Gaster.png"
+    },
+    {
+      "filename": "Weird Interactions/Lancer.mp3",
+      "name": "Lancer",
+      "category": "Weird Interactions",
+      "icon": "Sound Effect Icons/Lancer.png"
+    },
+    {
+      "filename": "Weird Interactions/Shrine Ringtone.mp3",
+      "name": "Shrine Ringtone",
+      "category": "Weird Interactions",
+      "icon": "Sound Effect Icons/Ringtone.png"
+    },
+    {
+      "filename": "Weird Interactions/Weird Route Short.mp3",
+      "name": "Weird Route Short",
+      "category": "Weird Interactions",
+      "icon": "Sound Effect Icons/Weird Route Short.png"
+    }
+  ]
+}
