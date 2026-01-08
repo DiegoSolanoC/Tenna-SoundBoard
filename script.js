@@ -998,12 +998,31 @@ function initMusicPanel() {
             const encodedIconName = encodeURIComponent(iconName);
             img.src = `Music Icons/${encodedIconName}.png?v=${imageCacheBuster}`;
             img.alt = song.name;
+            let iconLoadAttempts = 0;
             img.onerror = function() {
-                const altEncoded = iconName.replace(/\s+/g, '%20');
-                if (this.src !== `Music Icons/${altEncoded}.png?v=${imageCacheBuster}`) {
+                iconLoadAttempts++;
+                // Try alternative encodings first
+                if (iconLoadAttempts === 1) {
+                    const altEncoded = iconName.replace(/\s+/g, '%20');
                     this.src = `Music Icons/${altEncoded}.png?v=${imageCacheBuster}`;
                     return;
                 }
+                // Try uppercase "TV" specifically (for "Tv World" -> "TV World")
+                if (iconLoadAttempts === 2) {
+                    const tvUppercase = iconName.replace(/^tv /i, 'TV ').replace(/ tv /i, ' TV ');
+                    if (tvUppercase !== iconName) {
+                        const varEncoded = encodeURIComponent(tvUppercase);
+                        this.src = `Music Icons/${varEncoded}.png?v=${imageCacheBuster}`;
+                        return;
+                    }
+                }
+                // Try full uppercase as last resort
+                if (iconLoadAttempts === 3) {
+                    const upperEncoded = encodeURIComponent(iconName.toUpperCase());
+                    this.src = `Music Icons/${upperEncoded}.png?v=${imageCacheBuster}`;
+                    return;
+                }
+                // If all attempts fail, hide the icon
                 this.style.display = 'none';
             };
             
