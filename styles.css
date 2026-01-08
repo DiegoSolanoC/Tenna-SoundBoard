@@ -63,12 +63,13 @@ body {
 .music-panel-content {
     padding: 10px;
     padding-top: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 0;
     min-height: 100vh;
     height: 100%;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    position: relative;
 }
 
 .music-title {
@@ -94,8 +95,15 @@ body {
 .music-controls-bottom {
     flex-shrink: 0;
     margin-top: auto;
-    padding-top: 15px;
+    padding: 15px 10px;
+    padding-bottom: calc(15px + env(safe-area-inset-bottom));
     border-top: 2px solid rgba(255, 255, 255, 0.2);
+    position: sticky;
+    bottom: 0;
+    background: #000000;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Now Playing Section - Compact at bottom */
@@ -360,6 +368,13 @@ body {
     touch-action: manipulation;
 }
 
+/* Mobile: Smaller music icons */
+@media (max-width: 767px) {
+    .music-grid-btn {
+        max-width: 45px;
+    }
+}
+
 .music-grid-btn:active {
     transform: scale(0.98);
 }
@@ -460,6 +475,7 @@ body {
     padding: 5px;
     -webkit-overflow-scrolling: touch;
 }
+
 
 .sound-effects-grid::-webkit-scrollbar {
     width: 6px;
@@ -632,21 +648,40 @@ body {
         user-select: text;
     }
     
-    /* Larger touch targets for mobile */
+    /* Smaller icons for mobile vertical display */
     .music-grid-btn {
-        min-width: 60px;
-        min-height: 60px;
+        min-width: 45px;
+        min-height: 45px;
+        max-width: 45px;
+    }
+    
+    .music-grid-btn .music-icon-container {
+        max-width: 45px;
     }
     
     .sound-effect-btn {
-        min-height: 60px;
-        padding: 10px 6px;
+        min-height: 50px;
+        padding: 6px 4px;
+    }
+    
+    .sound-effect-btn .sound-effect-icon {
+        max-height: 30px;
+    }
+    
+    .sound-effect-btn .sound-effect-name {
+        font-size: 9px;
     }
     
     .music-control-btn {
-        min-width: 56px;
-        min-height: 56px;
-        padding: 12px;
+        min-width: 50px;
+        min-height: 50px;
+        padding: 10px;
+        max-width: 60px;
+    }
+    
+    .music-control-btn .control-icon {
+        width: 18px;
+        height: 18px;
     }
     
     /* Better spacing on small screens */
@@ -664,9 +699,18 @@ body {
         min-width: 100%;
     }
     
+    /* Music grid smaller on mobile */
+    .music-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 3px;
+    }
+    
+    /* Sound effects: Show 7 columns in a single row */
     .sound-effects-grid {
-        max-height: 300px;
-        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        max-height: none;
+        overflow-y: visible;
     }
 }
 
