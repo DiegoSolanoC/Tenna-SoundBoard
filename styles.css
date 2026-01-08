@@ -428,17 +428,13 @@ body {
 
 /* Sound Effects Section */
 .sound-effects-section {
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     flex-shrink: 0;
 }
 
 .sound-effects-title {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 10px;
+    display: none; /* Hidden - title removed */
 }
 
 .sound-effects-container {
@@ -452,18 +448,32 @@ body {
     display: flex;
     flex-direction: column;
     min-width: 0;
+    margin-bottom: 0;
 }
 
 .sound-effect-category-title {
-    color: #ffffff;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    margin-bottom: 8px;
-    padding: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    border-left: 3px solid #666666;
-    border-radius: 4px;
+    margin-bottom: 4px;
+    margin-top: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
     text-align: center;
+}
+
+/* Color code category titles: Red, Blue, Green */
+.sound-effect-category-section:nth-child(1) .sound-effect-category-title {
+    color: #ff4444; /* Red */
+}
+
+.sound-effect-category-section:nth-child(2) .sound-effect-category-title {
+    color: #4488ff; /* Blue */
+}
+
+.sound-effect-category-section:nth-child(3) .sound-effect-category-title {
+    color: #44ff44; /* Green */
 }
 
 .sound-effects-grid {
