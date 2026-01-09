@@ -16,10 +16,17 @@ function getMusicFiles(folderPath) {
                 const lower = file.toLowerCase();
                 return lower.endsWith('.mp3') || lower.endsWith('.wav') || lower.endsWith('.ogg');
             })
-            .map(file => ({
-                filename: file,
-                name: file.replace(/\.(mp3|wav|ogg)$/i, '')
-            }));
+            .map(file => {
+                // Fix case sensitivity for GitHub Pages - "TV World" should be "Tv World"
+                let filename = file;
+                if (file === 'TV World.mp3') {
+                    filename = 'Tv World.mp3';
+                }
+                return {
+                    filename: filename,
+                    name: file.replace(/\.(mp3|wav|ogg)$/i, '')
+                };
+            });
         
         // Sort with "Winston's Desk" first (or any file containing "Winston" or "Desk")
         const sorted = musicFiles.sort((a, b) => {
