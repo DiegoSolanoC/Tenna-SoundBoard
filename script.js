@@ -524,7 +524,14 @@ function initMusicPanel() {
     function updateNowPlaying() {
         const currentSongEl = document.getElementById('musicCurrentSong');
         if (currentSongEl) {
-            currentSongEl.textContent = getCurrentSongName();
+            const songName = getCurrentSongName();
+            currentSongEl.textContent = songName;
+            // Add red color class if no song is playing
+            if (songName === 'No song playing') {
+                currentSongEl.classList.add('no-song-playing');
+            } else {
+                currentSongEl.classList.remove('no-song-playing');
+            }
         }
     }
     
