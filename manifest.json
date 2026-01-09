@@ -1,23 +1,47 @@
 {
   "music": [
     {
+      "filename": "Big Shot.mp3",
+      "name": "Big Shot"
+    },
+    {
       "filename": "Catswing.mp3",
       "name": "Catswing"
+    },
+    {
+      "filename": "Death by Glamour.mp3",
+      "name": "Death by Glamour"
+    },
+    {
+      "filename": "Hopes and Dreams.mp3",
+      "name": "Hopes and Dreams"
     },
     {
       "filename": "Its TV Time.mp3",
       "name": "Its TV Time"
     },
     {
+      "filename": "Megalovania.mp3",
+      "name": "Megalovania"
+    },
+    {
+      "filename": "Nows your chance.mp3",
+      "name": "Nows your chance"
+    },
+    {
       "filename": "Pushing Buddies.mp3",
       "name": "Pushing Buddies"
+    },
+    {
+      "filename": "Rude Buster.mp3",
+      "name": "Rude Buster"
     },
     {
       "filename": "The Board Please.mp3",
       "name": "The Board Please"
     },
     {
-      "filename": "Tv World.mp3",
+      "filename": "TV World.mp3",
       "name": "TV World"
     }
   ],

@@ -149,12 +149,7 @@ window.SoundEffectsManager = {
     
     // Initialize sound effects
     init() {
-        // Load music button sound (optional - will fail gracefully if file doesn't exist)
-        try {
-            this.loadSound('music', 'Sound Effects/Music.mp3');
-        } catch (e) {
-            console.log('Music sound effect not available (optional)');
-        }
+        // Music button sound removed - file doesn't exist
         
         // Load saved volume and apply it
         const savedVolume = this.loadVolume();
@@ -284,6 +279,12 @@ function initMusicPanel() {
 
     const playMusic = (songPath = null) => {
         if (songPath) {
+            // Pause and reset current audio to prevent AbortError when switching songs
+            if (backgroundMusic.src) {
+                backgroundMusic.pause();
+                backgroundMusic.currentTime = 0;
+            }
+            
             // Set loop based on loop button state (not shuffle)
             backgroundMusic.loop = isLooping;
             
@@ -293,7 +294,6 @@ function initMusicPanel() {
             }
             
             const encodedPath = encodeMusicPath(songPath);
-            backgroundMusic.src = encodedPath;
             currentSong = songPath;
             updateNowPlaying();
             
@@ -318,7 +318,12 @@ function initMusicPanel() {
                 }
             });
             
+            // Set source and load - always wait for new source to be ready
+            backgroundMusic.src = encodedPath;
             backgroundMusic.load();
+            
+            // Store the current songPath to verify we're still playing the same song when ready
+            const currentSongPathForPlay = songPath;
             
             // Handler for metadata loaded
             const handleMetadataLoaded = (eventType) => {
@@ -329,19 +334,43 @@ function initMusicPanel() {
                     if (progressBar) {
                         progressBar.value = 0;
                     }
-                    backgroundMusic.removeEventListener('loadedmetadata', handleMetadataLoaded);
-                    backgroundMusic.removeEventListener('canplay', handleMetadataLoaded);
-                    backgroundMusic.removeEventListener('loadeddata', handleMetadataLoaded);
-                    backgroundMusic.removeEventListener('canplaythrough', handleMetadataLoaded);
                 }
             };
             
-            backgroundMusic.addEventListener('loadedmetadata', () => handleMetadataLoaded('loadedmetadata'));
-            backgroundMusic.addEventListener('canplay', () => handleMetadataLoaded('canplay'));
-            backgroundMusic.addEventListener('loadeddata', () => handleMetadataLoaded('loadeddata'));
-            backgroundMusic.addEventListener('canplaythrough', () => handleMetadataLoaded('canplaythrough'));
+            // Wait for audio to be ready before playing - always wait after setting new src
+            const playWhenReady = () => {
+                // Verify we're still trying to play the same song (user might have clicked another)
+                if (currentSong !== currentSongPathForPlay) {
+                    return; // User switched songs, don't play this one
+                }
+                
+                // Set volume directly (no fade)
+                backgroundMusic.volume = backgroundMusic.muted ? 0 : currentTargetVolume;
+                const playPromise = backgroundMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        updateProgressBar();
+                    }).catch(error => {
+                        // Only log non-AbortError errors (AbortError is expected when switching songs quickly)
+                        if (error.name !== 'AbortError') {
+                            console.log('Autoplay prevented:', error);
+                        }
+                    });
+                } else {
+                    updateProgressBar();
+                }
+            };
             
-            // Fallback: Check periodically
+            // Always wait for canplay or canplaythrough after setting new src
+            backgroundMusic.addEventListener('canplay', playWhenReady, { once: true });
+            backgroundMusic.addEventListener('canplaythrough', playWhenReady, { once: true });
+            
+            // Also update progress bar when metadata is loaded
+            backgroundMusic.addEventListener('loadedmetadata', () => handleMetadataLoaded('loadedmetadata'), { once: true });
+            backgroundMusic.addEventListener('loadeddata', () => handleMetadataLoaded('loadeddata'), { once: true });
+            
+            // Fallback: Check periodically for metadata
             let metadataCheckCount = 0;
             const maxMetadataChecks = 100;
             const metadataCheckInterval = setInterval(() => {
@@ -358,23 +387,22 @@ function initMusicPanel() {
                     clearInterval(metadataCheckInterval);
                 }
             }, 100);
-        }
-        
-        const encodedPath = encodeMusicPath(songPath);
-        if (!backgroundMusic.paused && backgroundMusic.src.endsWith(encodedPath.split('/').pop())) return;
-        
-        // Set volume directly (no fade)
-        backgroundMusic.volume = backgroundMusic.muted ? 0 : currentTargetVolume;
-        const playPromise = backgroundMusic.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                updateProgressBar();
-            }).catch(error => {
-                console.log('Autoplay prevented:', error);
-            });
         } else {
-            updateProgressBar();
+            // No song path provided - just play/pause current song
+            if (!backgroundMusic.paused && backgroundMusic.src) {
+                const playPromise = backgroundMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        updateProgressBar();
+                    }).catch(error => {
+                        if (error.name !== 'AbortError') {
+                            console.log('Autoplay prevented:', error);
+                        }
+                    });
+                } else {
+                    updateProgressBar();
+                }
+            }
         }
     };
     
