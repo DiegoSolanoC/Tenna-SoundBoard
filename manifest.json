@@ -33,6 +33,10 @@
       "name": "Pushing Buddies"
     },
     {
+      "filename": "Quiz.mp3",
+      "name": "Quiz"
+    },
+    {
       "filename": "Rude Buster.mp3",
       "name": "Rude Buster"
     },
@@ -53,6 +57,12 @@
       "icon": "Sound Effect Icons/Battle Start.png"
     },
     {
+      "filename": "Attack or Roleplay/COMING.mp3",
+      "name": "COMING",
+      "category": "Attack or Roleplay",
+      "icon": "Sound Effect Icons/Coming.png"
+    },
+    {
       "filename": "Attack or Roleplay/Explosion.mp3",
       "name": "Explosion",
       "category": "Attack or Roleplay",
@@ -69,12 +79,6 @@
       "name": "Tenna Talk",
       "category": "Attack or Roleplay",
       "icon": "Sound Effect Icons/Tenna Talk.png"
-    },
-    {
-      "filename": "Attack or Roleplay/TV Off.mp3",
-      "name": "TV Off",
-      "category": "Attack or Roleplay",
-      "icon": "Sound Effect Icons/TV Off.png"
     },
     {
       "filename": "Attack or Roleplay/Weapon Pull.mp3",
